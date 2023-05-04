@@ -1,4 +1,4 @@
-package com.pragma.powerup.usermicroservice.adapters.driving.http.controller;
+package com.pragma.powerup.usermicroservice.adapters.driving.http.endpoints.controller;
 
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.UserRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.PersonResponseDto;
@@ -32,8 +32,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 @SecurityRequirement(name = "jwt")
 public class UserRestController {
-    private final IUserHandler userHandler;
 
+    //Llama su handler
+    private final IUserHandler userHandler;
+    //Crear etiqueta @Operation donde parametros colocaremos summary = "descripción del endpoint", también está el parameto responses = {} que se compone de @ApiResponse
+    //Así: ,responses ={ @ApiResponse (responseCode = "valor", "description = "",content = @Content (mediaType = "application/Json",schema = @schema (red = "))}
     @Operation(summary = "Add a new user",
             responses = {
                     @ApiResponse(responseCode = "201", description = "User created",
@@ -42,9 +45,12 @@ public class UserRestController {
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
                     @ApiResponse(responseCode = "403", description = "Role not allowed for user creation",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+    //PosMappgin propio de un controller con su respectiva dirección
     @PostMapping("")
+    //Al ser un posto necesita un RequestBody para recibir la información
     public ResponseEntity<Map<String, String>> saveUser(@RequestBody UserRequestDto userRequestDto) {
         userHandler.saveUser(userRequestDto);
+        //Siempre las espuesta es con ResponseEntity.status(created ya que es post).body(mapeos...?)
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.USER_CREATED_MESSAGE));
     }

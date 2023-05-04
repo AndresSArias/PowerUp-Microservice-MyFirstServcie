@@ -24,10 +24,13 @@ import static com.pragma.powerup.usermicroservice.configuration.Constants.CLIENT
 import static com.pragma.powerup.usermicroservice.configuration.Constants.EMPLOYEE_ROLE_ID;
 import static com.pragma.powerup.usermicroservice.configuration.Constants.MAX_PAGE_SIZE;
 import static com.pragma.powerup.usermicroservice.configuration.Constants.PROVIDER_ROLE_ID;
-
+//Clase principal para conectart con el domino, el adaptador de la bd
+//Se usa @Transactional
 @RequiredArgsConstructor
 @Transactional
 public class UserMysqlAdapter implements IUserPersistencePort {
+    //Acá están todos los repositorios
+
     private final IUserRepository userRepository;
     private final IPersonRepository personRepository;
     private final IRoleRepository roleRepository;

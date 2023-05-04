@@ -1,4 +1,4 @@
-package com.pragma.powerup.usermicroservice.adapters.driving.http.mapper;
+package com.pragma.powerup.usermicroservice.adapters.driving.http.factory.mapper;
 
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.PersonResponseDto;
 import com.pragma.powerup.usermicroservice.domain.model.User;
@@ -21,5 +21,6 @@ public interface IPersonResponseMapper {
     @Mapping(source = "person.dniNumber", target = "dniNumber")
     @Mapping(source = "person.idPersonType", target = "idPersonType")
     PersonResponseDto userToPersonResponse(User user);
+    //No se usa @Mapping porque
     List<PersonResponseDto> userListToPersonResponseList(List<User> userList);
 }

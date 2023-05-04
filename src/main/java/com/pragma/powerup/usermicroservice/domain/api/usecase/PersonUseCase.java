@@ -1,4 +1,4 @@
-package com.pragma.powerup.usermicroservice.domain.usecase;
+package com.pragma.powerup.usermicroservice.domain.api.usecase;
 
 import com.pragma.powerup.usermicroservice.domain.model.Person;
 import com.pragma.powerup.usermicroservice.domain.spi.IPersonPersistencePort;
